@@ -1,0 +1,14 @@
+﻿<Properties StartupItem="ControlPolizas.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Index.cs">
+    <Files>
+      <File FileName="Index.cs" Line="12" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/media/nacho/OS WINDOWS/Users/Nacho Martinez/Documents/Visual Studio 2015/Projects/ControlPolizas/ControlPolizas/Index.cs" line="7" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

@@ -1,0 +1,15 @@
+/media/nacho/OS WINDOWS/Users/Nacho Martinez/Documents/Visual Studio 2015/Projects/ControlPolizas/ControlPolizas/obj/Debug/.NETFramework,Version=v4.6.1.AssemblyAttribute.cs
+/media/nacho/OS WINDOWS/Users/Nacho Martinez/Documents/Visual Studio 2015/Projects/ControlPolizas/ControlPolizas/obj/Debug/ControlPolizas.Agente.resources
+/media/nacho/OS WINDOWS/Users/Nacho Martinez/Documents/Visual Studio 2015/Projects/ControlPolizas/ControlPolizas/obj/Debug/ControlPolizas.Compania.resources
+/media/nacho/OS WINDOWS/Users/Nacho Martinez/Documents/Visual Studio 2015/Projects/ControlPolizas/ControlPolizas/obj/Debug/ControlPolizas.Direccion.resources
+/media/nacho/OS WINDOWS/Users/Nacho Martinez/Documents/Visual Studio 2015/Projects/ControlPolizas/ControlPolizas/obj/Debug/ControlPolizas.FrmIndex.resources
+/media/nacho/OS WINDOWS/Users/Nacho Martinez/Documents/Visual Studio 2015/Projects/ControlPolizas/ControlPolizas/obj/Debug/ControlPolizas.Cliente.resources
+/media/nacho/OS WINDOWS/Users/Nacho Martinez/Documents/Visual Studio 2015/Projects/ControlPolizas/ControlPolizas/obj/Debug/ControlPolizas.Inicio_Sesion.resources
+/media/nacho/OS WINDOWS/Users/Nacho Martinez/Documents/Visual Studio 2015/Projects/ControlPolizas/ControlPolizas/obj/Debug/ControlPolizas.Poliza.resources
+/media/nacho/OS WINDOWS/Users/Nacho Martinez/Documents/Visual Studio 2015/Projects/ControlPolizas/ControlPolizas/obj/Debug/ControlPolizas.Properties.Resources.resources
+/media/nacho/OS WINDOWS/Users/Nacho Martinez/Documents/Visual Studio 2015/Projects/ControlPolizas/ControlPolizas/obj/Debug/ControlPolizas.exe
+/media/nacho/OS WINDOWS/Users/Nacho Martinez/Documents/Visual Studio 2015/Projects/ControlPolizas/ControlPolizas/bin/Debug/EntityFramework.dll
+/media/nacho/OS WINDOWS/Users/Nacho Martinez/Documents/Visual Studio 2015/Projects/ControlPolizas/ControlPolizas/bin/Debug/EntityFramework.SqlServer.dll
+/media/nacho/OS WINDOWS/Users/Nacho Martinez/Documents/Visual Studio 2015/Projects/ControlPolizas/ControlPolizas/bin/Debug/System.Data.SQLite.dll
+/media/nacho/OS WINDOWS/Users/Nacho Martinez/Documents/Visual Studio 2015/Projects/ControlPolizas/ControlPolizas/bin/Debug/System.Data.SQLite.EF6.dll
+/media/nacho/OS WINDOWS/Users/Nacho Martinez/Documents/Visual Studio 2015/Projects/ControlPolizas/ControlPolizas/bin/Debug/System.Data.SQLite.Linq.dll
