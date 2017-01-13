@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PolizasPorClientes));
             this.dgvRecibos = new System.Windows.Forms.DataGridView();
             this.btnConsultar = new System.Windows.Forms.Button();
@@ -36,9 +37,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.MenuPolizas = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecibos)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.MenuPolizas.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvRecibos
@@ -52,6 +56,8 @@
             this.dgvRecibos.Size = new System.Drawing.Size(546, 275);
             this.dgvRecibos.TabIndex = 26;
             this.dgvRecibos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRecibos_CellDoubleClick);
+            this.dgvRecibos.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvRecibos_CellMouseDown);
+            this.dgvRecibos.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvRecibos_MouseDown);
             // 
             // btnConsultar
             // 
@@ -110,24 +116,39 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click_1);
             // 
+            // MenuPolizas
+            // 
+            this.MenuPolizas.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eliminarToolStripMenuItem});
+            this.MenuPolizas.Name = "MenuPolizas";
+            this.MenuPolizas.Size = new System.Drawing.Size(118, 26);
+            // 
+            // eliminarToolStripMenuItem
+            // 
+            this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.eliminarToolStripMenuItem.Text = "Eliminar";
+            this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
+            // 
             // PolizasPorClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(574, 483);
-            this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtNombreCliente);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dgvRecibos);
             this.Controls.Add(this.btnConsultar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "PolizasPorClientes";
             this.Text = "PolizasPorClientes";
             this.Load += new System.EventHandler(this.PolizasPorClientes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecibos)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.MenuPolizas.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -141,5 +162,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.ContextMenuStrip MenuPolizas;
+        private System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
     }
 }

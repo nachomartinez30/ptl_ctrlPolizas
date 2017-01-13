@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Poliza));
             this.chkboxNueva = new System.Windows.Forms.CheckBox();
             this.txtNumeroPoliza = new System.Windows.Forms.TextBox();
@@ -76,7 +75,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.chkboxPagarPrimer = new System.Windows.Forms.CheckBox();
             this.btnRevisarRecibos = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.btnRenovar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -84,9 +83,11 @@
             // chkboxNueva
             // 
             this.chkboxNueva.AutoSize = true;
-            this.chkboxNueva.Location = new System.Drawing.Point(274, 22);
+            this.chkboxNueva.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkboxNueva.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.chkboxNueva.Location = new System.Drawing.Point(256, 22);
             this.chkboxNueva.Name = "chkboxNueva";
-            this.chkboxNueva.Size = new System.Drawing.Size(58, 17);
+            this.chkboxNueva.Size = new System.Drawing.Size(63, 17);
             this.chkboxNueva.TabIndex = 0;
             this.chkboxNueva.Text = "Nueva";
             this.chkboxNueva.UseVisualStyleBackColor = true;
@@ -547,10 +548,15 @@
             this.btnRevisarRecibos.UseVisualStyleBackColor = true;
             this.btnRevisarRecibos.Click += new System.EventHandler(this.btnRevisarRecibos_Click);
             // 
-            // contextMenuStrip1
+            // btnRenovar
             // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            this.btnRenovar.Location = new System.Drawing.Point(217, 575);
+            this.btnRenovar.Name = "btnRenovar";
+            this.btnRenovar.Size = new System.Drawing.Size(75, 23);
+            this.btnRenovar.TabIndex = 82;
+            this.btnRenovar.Text = "Renovar";
+            this.btnRenovar.UseVisualStyleBackColor = true;
+            this.btnRenovar.Click += new System.EventHandler(this.button2_Click);
             // 
             // Poliza
             // 
@@ -559,7 +565,6 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(519, 610);
-            this.ControlBox = false;
             this.Controls.Add(this.chkboxPagarPrimer);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.txtNumeroRecibos);
@@ -592,7 +597,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnRevisarRecibos);
+            this.Controls.Add(this.btnRenovar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(535, 649);
             this.MinimumSize = new System.Drawing.Size(535, 649);
             this.Name = "Poliza";
@@ -657,6 +664,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.CheckBox chkboxPagarPrimer;
         private System.Windows.Forms.Button btnRevisarRecibos;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.Button btnRenovar;
     }
 }

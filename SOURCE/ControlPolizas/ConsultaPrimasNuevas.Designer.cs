@@ -37,6 +37,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.chkboxNueva = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblInicio = new System.Windows.Forms.Label();
             this.btnConsultar = new System.Windows.Forms.Button();
             this.dgvRecibos = new System.Windows.Forms.DataGridView();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -72,7 +74,7 @@
             // dtpFechaPagoFin
             // 
             this.dtpFechaPagoFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaPagoFin.Location = new System.Drawing.Point(16, 61);
+            this.dtpFechaPagoFin.Location = new System.Drawing.Point(53, 60);
             this.dtpFechaPagoFin.Name = "dtpFechaPagoFin";
             this.dtpFechaPagoFin.Size = new System.Drawing.Size(103, 20);
             this.dtpFechaPagoFin.TabIndex = 14;
@@ -80,7 +82,7 @@
             // dtpFechaPagoInicio
             // 
             this.dtpFechaPagoInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaPagoInicio.Location = new System.Drawing.Point(16, 20);
+            this.dtpFechaPagoInicio.Location = new System.Drawing.Point(53, 19);
             this.dtpFechaPagoInicio.Name = "dtpFechaPagoInicio";
             this.dtpFechaPagoInicio.Size = new System.Drawing.Size(103, 20);
             this.dtpFechaPagoInicio.TabIndex = 12;
@@ -115,14 +117,34 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.dtpFechaPagoFin);
+            this.groupBox1.Controls.Add(this.lblInicio);
             this.groupBox1.Controls.Add(this.dtpFechaPagoInicio);
-            this.groupBox1.Location = new System.Drawing.Point(277, 16);
+            this.groupBox1.Location = new System.Drawing.Point(255, 16);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(134, 98);
+            this.groupBox1.Size = new System.Drawing.Size(165, 98);
             this.groupBox1.TabIndex = 19;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Fecha De Pago";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 60);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(21, 13);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "Fin";
+            // 
+            // lblInicio
+            // 
+            this.lblInicio.AutoSize = true;
+            this.lblInicio.Location = new System.Drawing.Point(12, 19);
+            this.lblInicio.Name = "lblInicio";
+            this.lblInicio.Size = new System.Drawing.Size(32, 13);
+            this.lblInicio.TabIndex = 15;
+            this.lblInicio.Text = "Inicio";
             // 
             // btnConsultar
             // 
@@ -140,6 +162,7 @@
             this.dgvRecibos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvRecibos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRecibos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRecibos.Location = new System.Drawing.Point(12, 141);
             this.dgvRecibos.Name = "dgvRecibos";
@@ -185,7 +208,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(764, 590);
-            this.ControlBox = false;
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPrimaCumulada);
             this.Controls.Add(this.btnCancelar);
@@ -203,6 +225,7 @@
             this.Text = "ConsultaPrimasNuevas";
             this.Load += new System.EventHandler(this.ConsultaPrimasNuevas_Load);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecibos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -224,5 +247,7 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.TextBox txtPrimaCumulada;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblInicio;
     }
 }

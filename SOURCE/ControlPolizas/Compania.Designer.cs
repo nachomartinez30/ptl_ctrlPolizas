@@ -141,7 +141,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(456, 320);
-            this.ControlBox = false;
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnBuscar);
@@ -152,6 +151,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnModificar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(472, 359);
             this.MinimumSize = new System.Drawing.Size(472, 359);
             this.Name = "Compania";

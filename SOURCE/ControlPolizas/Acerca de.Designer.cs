@@ -66,6 +66,7 @@
             this.label3.Size = new System.Drawing.Size(227, 68);
             this.label3.TabIndex = 2;
             this.label3.Text = "Control de Pólizas\r\nVersión 1.0\r\nAutor: Oscar Ignacio Martinez Díaz\r\n\r\n";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -82,7 +83,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(499, 467);
-            this.ControlBox = false;
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);

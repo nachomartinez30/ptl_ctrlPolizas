@@ -13,7 +13,6 @@ namespace ControlPolizas
 {
     public partial class ConsultarPolizasPorVigencia : Form
     {
-
         DataSet ds;
         SQLiteDataAdapter adaptador;
         SQLiteConnection conexion;

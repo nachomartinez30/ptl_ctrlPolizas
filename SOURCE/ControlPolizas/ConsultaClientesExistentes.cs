@@ -18,6 +18,7 @@ namespace ControlPolizas
         SQLiteDataAdapter adaptador;
         SQLiteConnection conexion;
         Cliente cliente;
+        int pk_ClienteEliminar;
 
         public ConsultaClientesExistentes()
         {
@@ -31,7 +32,7 @@ namespace ControlPolizas
 
         public void actualizarDataGridWiewRecibos()
         {
-
+            dgvRecibos.Refresh();
             String query = "Select * FROM Clientes";
             //MessageBox.Show(query);
 
@@ -86,5 +87,78 @@ namespace ControlPolizas
                 MessageBox.Show("Verifique la información " + ev);
             }
         }
+
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            elmiminarClienteClick(pk_ClienteEliminar);
+            try
+            {
+                
+                actualizarDataGridWiewRecibos();
+
+            }
+            catch (Exception ev)
+            {
+                MessageBox.Show("Rectifique los datos");
+            }
+        }
+
+        private void dgvRecibos_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                DateTime vigenciaFin;
+                if (e.Button == MouseButtons.Right)
+                {
+                    dgvRecibos.ContextMenuStrip = MenuClienteClic;
+                    dgvRecibos.ContextMenuStrip.Show(dgvRecibos, e.Location);
+                    DataGridViewRow row = dgvRecibos.Rows[e.RowIndex];
+                    pk_ClienteEliminar = int.Parse(row.Cells["PK_cliente"].Value.ToString());
+                    //vigenciaFin = DateTime.Parse(row.Cells["Vigencia"].Value.ToString())
+
+                    //  vigenciaFinElim = DateTime.Parse(row.Cells["Vigencia"].Value.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+
+        public void elmiminarClienteClick(int pk_cliente)
+        {
+            Cliente cl = new Cliente();
+            try { 
+                if (pk_cliente== 0)
+                {
+                    MessageBox.Show("No se encontró la Cliente");
+                }
+                else
+                {
+                    MessageBoxButtons botones = MessageBoxButtons.YesNo;
+
+                    DialogResult dialogResult = MessageBox.Show("¿Desea eliminar el Cliente?, esto implica ELIMINAR tambien TODAS las POLIZAS pertenecientes a este Cliente", "ATENCION!", botones, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        Console.WriteLine(pk_cliente);
+                        cl.eliminarCliente(pk_cliente);
+
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+
+                    }
+
+                }
+
+                //cliente.buscarClientePKCliente(PK_Cliente);
+            }
+            catch (Exception ev)
+            {
+                MessageBox.Show("Por favor elija una fila existente " + ev);
+            }
+        }
+
     }
 }

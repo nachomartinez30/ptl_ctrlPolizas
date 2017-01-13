@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace ControlPolizas
 {
+    
     public partial class Poliza : Form
     {
         SQLiteConnection conexion;
@@ -148,6 +149,35 @@ namespace ControlPolizas
             }
         }
 
+        public int buscarPk_PolizaPoliza(String numeroPoliza, String fechaFin)
+        {
+            PK_Poliza = 0;
+            SQLiteCommand command;
+            SQLiteDataReader lectorDatos;
+            try
+            {
+                String query = "SELECT p.PK_Poliza From Polizas p WHERE p.NumeroPoliza='" + numeroPoliza + "' AND FinVigencia='" + fechaFin + "'";
+                //MessageBox.Show(query);
+                //Console.WriteLine(query);
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
+                conexion.Open();
+                command = new SQLiteCommand(query, conexion);
+                lectorDatos = command.ExecuteReader();
+
+                while (lectorDatos.Read())
+                {
+                    PK_Poliza = lectorDatos.GetInt16(0);
+                }
+                
+            }
+            catch (Exception ev)
+            {
+                MessageBox.Show("No se encontro la Póliza " + ev);
+            }
+            
+            return PK_Poliza;
+        }
+
 
         public void buscarPoliza(String numeroPoliza,String fechaInicio, String fechaFin)
         {
@@ -157,7 +187,7 @@ namespace ControlPolizas
              try
             {
                 String query = "SELECT p.PK_Poliza, p.NumeroPoliza,p.Nueva,c.Nombre,tp.TipoPoliza,co.NombreCompania, p.NumeroRenovacion,p.FrecuenciaDePago,p.InicioVigencia,p.FinVigencia,p.Adjunto,a.Nombre,p.Version,p.PrimaNeta,p.RecargoPagoFraccionado,p.DerechoPoliza,p.IVA,p.ImporteTotal FROM Polizas p, TipoPolizas tp, Clientes c, Agentes a,Companias co  WHERE p.NumeroPoliza='" + numeroPoliza + "' and tp.PK_TipoPoliza=p.FK_TipoPoliza and p.FK_Cliente=c.PK_Cliente and co.PK_Compania=p.FK_Compania and a.PK_Agente=p.FK_Agente AND p.InicioVigencia='" + fechaInicio + "' AND FinVigencia='" + fechaFin + "'";
-
+                //MessageBox.Show(query);
                 //Console.WriteLine(query);
                 conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
                 conexion.Open();
@@ -178,12 +208,12 @@ namespace ControlPolizas
                     {
                         chkboxNueva.Checked = false;
                     }
-                    txtCliente.Text = lectorDatos.GetString(3);
+                    txtCliente.Text = lectorDatos.GetString(3);               
                     cmbRamo.SelectedItem = lectorDatos.GetString(4);
                     cmbCompania.SelectedItem = lectorDatos.GetString(5);
                     txtNumeroRenovacion.Text = lectorDatos.GetString(6);
                     int frecPago = lectorDatos.GetInt16(7);
-
+                    //MessageBox.Show("");
                     switch(frecPago){
                         case 0:
                             cmbFrecuenciaPago.SelectedIndex = 0;//Mensual
@@ -211,6 +241,7 @@ namespace ControlPolizas
                     txtIVA.Text = lectorDatos.GetDouble(16).ToString();
                     txtImporte.Text = lectorDatos.GetDouble(17).ToString();
                     btnRevisarRecibos.Enabled = true;
+                    
                 }
 
 
@@ -218,16 +249,108 @@ namespace ControlPolizas
 
                 if (txtCliente.Text.Equals(""))
                 {
-                    MessageBox.Show("Verifique la informacion");
-                    dtpInicioVigencia.Focus();
+                    MessageBox.Show("Ingrese Nombre");
+                    txtCliente.Focus();
+                    btnBusca.Visible = true;
                 }
                 else
                 {
                     btnEliminar.Enabled = true;
                     btnAgregar.Enabled = false;
                     btnAgregar.Visible = false;
-                    btnBusca.Enabled = false;
+                    btnBusca.Visible = false;
                    
+                    //btnGenerarRecibos.Enabled = false;
+                }
+
+            }
+            catch (Exception ev)
+            {
+                MessageBox.Show("No se encontro la Póliza " + ev);
+            }
+        }
+
+        public void buscarPolizaFinVigencia(String numeroPoliza, String fechaFin)
+        {
+            PK_Poliza = 7;
+            SQLiteCommand command;
+            SQLiteDataReader lectorDatos;
+            try
+            {
+                String query = "SELECT p.PK_Poliza, p.NumeroPoliza,p.Nueva,c.Nombre,tp.TipoPoliza,co.NombreCompania, p.NumeroRenovacion,p.FrecuenciaDePago,p.InicioVigencia,p.FinVigencia,p.Adjunto,a.Nombre,p.Version,p.PrimaNeta,p.RecargoPagoFraccionado,p.DerechoPoliza,p.IVA,p.ImporteTotal FROM Polizas p, TipoPolizas tp, Clientes c, Agentes a,Companias co  WHERE p.NumeroPoliza='" + numeroPoliza + "' and tp.PK_TipoPoliza=p.FK_TipoPoliza and p.FK_Cliente=c.PK_Cliente and co.PK_Compania=p.FK_Compania and a.PK_Agente=p.FK_Agente AND FinVigencia='" + fechaFin + "'";
+                //MessageBox.Show(query);
+                //Console.WriteLine(query);
+                conexion = new SQLiteConnection("Data Source=" + System.IO.Directory.GetCurrentDirectory() + "\\ControlPolizas.db;Version=3");
+                conexion.Open();
+                command = new SQLiteCommand(query, conexion);
+                lectorDatos = command.ExecuteReader();
+
+                while (lectorDatos.Read())
+                {
+                    PK_Poliza = lectorDatos.GetInt16(0);
+                    //MessageBox.Show(PK_Poliza.ToString());
+                    txtNumeroPoliza.Text = lectorDatos.GetString(1);
+                    String nueva = lectorDatos.GetString(2);
+                    if (nueva.Equals("True"))
+                    {
+                        chkboxNueva.Checked = true;
+                    }
+                    else
+                    {
+                        chkboxNueva.Checked = false;
+                    }
+                    txtCliente.Text = lectorDatos.GetString(3);
+                    cmbRamo.SelectedItem = lectorDatos.GetString(4);
+                    cmbCompania.SelectedItem = lectorDatos.GetString(5);
+                    txtNumeroRenovacion.Text = lectorDatos.GetString(6);
+                    int frecPago = lectorDatos.GetInt16(7);
+                    //MessageBox.Show("");
+                    switch (frecPago)
+                    {
+                        case 0:
+                            cmbFrecuenciaPago.SelectedIndex = 0;//Mensual
+                            break;
+                        case 1:
+                            cmbFrecuenciaPago.SelectedIndex = 1;//Trimestral
+                            break;
+                        case 2:
+                            cmbFrecuenciaPago.SelectedIndex = 2;//Semestral
+                            break;
+                        case 3:
+                            cmbFrecuenciaPago.SelectedIndex = 3;//Anual
+                            break;
+                    }
+
+                    dtpInicioVigencia.Value = lectorDatos.GetDateTime(8);
+                    dtpFinVigencia.Value = lectorDatos.GetDateTime(9);
+
+                    txtAdjunto.Text = lectorDatos.GetString(10);
+                    cmbAgente.SelectedItem = lectorDatos.GetString(11);
+                    txtVersion.Text = lectorDatos.GetString(12);
+                    txtPrima.Text = lectorDatos.GetDouble(13).ToString();
+                    txtFraccionado.Text = lectorDatos.GetDouble(14).ToString();
+                    txtDerechoPoliza.Text = lectorDatos.GetDouble(15).ToString();
+                    txtIVA.Text = lectorDatos.GetDouble(16).ToString();
+                    txtImporte.Text = lectorDatos.GetDouble(17).ToString();
+                    btnRevisarRecibos.Enabled = true;
+                }
+
+
+                conexion.Close();
+
+                if (txtCliente.Text.Equals(""))
+                {
+                    MessageBox.Show("Ingrese Nombre");
+                    txtCliente.Focus();
+                    btnBusca.Visible = true;
+                }
+                else
+                {
+                    btnEliminar.Enabled = true;
+                    btnAgregar.Enabled = false;
+                    btnAgregar.Visible = false;
+                    btnBusca.Visible = false;
+
                     //btnGenerarRecibos.Enabled = false;
                 }
 
@@ -333,6 +456,8 @@ namespace ControlPolizas
                 buscarPoliza(txtNumeroPoliza.Text, dtpInicioVigencia.Value.Date.ToString("yyyy-MM-dd"), dtpFinVigencia.Value.Date.ToString("yyyy-MM-dd"));
                 txtNumeroRecibos.Text= numeroDeRecibos(PK_Poliza, dtpInicioVigencia.Value).ToString();
                 btnRevisarRecibos.Enabled = true;
+               
+
             }
             
            
@@ -348,7 +473,7 @@ namespace ControlPolizas
             btnBusca.Enabled = true;
             btnRevisarRecibos.Enabled = false;
             chkboxPagarPrimer.Enabled = true;
-            
+            btnBusca.Visible = true;
         }
         public void LimpiarTextBox()
         {
@@ -506,9 +631,11 @@ namespace ControlPolizas
                 conexion.Open();
 
                 string queryMax = "SELECT PK_Poliza FROM Polizas WHERE NumeroPoliza='"+numeroPoliza+"' AND Nueva='"+nueva+"' AND FK_Cliente="+FK_Cliente+" and FK_TipoPoliza="+FK_TipoPoliza+" and FK_Compania="+FK_Compania+" and NumeroRenovacion='"+numeroRenovacion+"' and FrecuenciaDePago="+frecuenciaPago+" and InicioVigencia='"+fechaInicio+"' and FinVigencia='"+fechaFin+"' and FK_Agente="+FK_Agente+" and Version='"+version+"' and PrimaNeta="+primaNeta+" and RecargoPagoFraccionado="+recargoPagoFraccionado+" and DerechoPoliza="+derechoPoliza+" and IVA="+IVA+" and ImporteTotal="+importeTotal;
+                Console.WriteLine(queryMax);
                 commandMax = new SQLiteCommand(queryMax, conexion);
                 string PK_TipoPolizaString = commandMax.ExecuteScalar().ToString();
                 PK_Poliza = Int32.Parse(PK_TipoPolizaString);
+
                 if (PK_Poliza != null)
                 {
                     existente= true;//Si hay una igual
@@ -1386,6 +1513,17 @@ namespace ControlPolizas
 
             }
          }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+            chkboxNueva.Checked = false;
+            txtNumeroRenovacion.Enabled = true;
+            dtpInicioVigencia.Value = DateTime.Today;
+            dtpFinVigencia.Value = DateTime.Today.AddYears(1);
+            txtAdjunto.Text = "";
+            ValoresBotonesDefault();
+        }
 
         private void btnRevisarRecibos_Click(object sender, EventArgs e)
         {

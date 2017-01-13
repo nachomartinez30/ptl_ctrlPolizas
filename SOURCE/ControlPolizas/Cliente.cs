@@ -199,7 +199,7 @@ namespace ControlPolizas
                 conexion.Open();
 
                 query = "DELETE FROM Clientes WHERE PK_Cliente=" + PK_Cliente;
-                //MessageBox.Show(query);
+               // MessageBox.Show(query);
                 using (SQLiteCommand cmd = new SQLiteCommand(query, conexion))
                 {
                     cmd.ExecuteNonQuery();

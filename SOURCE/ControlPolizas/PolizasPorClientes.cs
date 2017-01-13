@@ -17,6 +17,7 @@ namespace ControlPolizas
         SQLiteDataAdapter adaptador;
         SQLiteConnection conexion;
         Poliza poliza;
+        String numPolizaElim, vigenciaFinElim;
         int PK_Cliente = 00;
 
         public PolizasPorClientes()
@@ -90,8 +91,8 @@ namespace ControlPolizas
 
         public void actualizarDataGridWiewRecibos(int FK_Cliente)
         {
-
-            String query = "SELECT p.NumeroPoliza as 'Numero de Poliza',p.Nueva '¿Es nueva?',tp.TipoPoliza as 'Ramo', p.FinVigencia as 'Vigencia',co.NombreCompania as 'Compañía' FROM Clientes c, Polizas p, RecibosPoliza rp, TipoPolizas tp, Companias co WHERE p.FK_Cliente=c.PK_Cliente and p.FK_Compania=co.PK_Compania and p.FK_TipoPoliza=tp.PK_TipoPoliza and p.FK_Cliente=" + FK_Cliente+" GROUP BY p.NumeroPoliza";
+            dgvRecibos.Refresh();
+            String query = "SELECT p.NumeroPoliza as 'Numero de Poliza',p.Nueva '¿Es nueva?',tp.TipoPoliza as 'Ramo', p.FinVigencia as 'Vigencia',co.NombreCompania as 'Compañía' FROM Clientes c, Polizas p, RecibosPoliza rp, TipoPolizas tp, Companias co WHERE p.FK_Cliente=c.PK_Cliente and p.FK_Compania=co.PK_Compania and p.FK_TipoPoliza=tp.PK_TipoPoliza and p.FK_Cliente=" + FK_Cliente+ " group by p.FinVigencia ORDER BY p.NumeroPoliza";
                 //MessageBox.Show(query);
 
             // DataTable dataTable = new DataTable();
@@ -187,5 +188,93 @@ namespace ControlPolizas
         {
             this.Dispose();
         }
+
+        private void dgvRecibos_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                DateTime vigenciaFin;
+                if (e.Button == MouseButtons.Right)
+                {
+                    dgvRecibos.ContextMenuStrip = MenuPolizas;
+                    dgvRecibos.ContextMenuStrip.Show(dgvRecibos, e.Location);
+                    DataGridViewRow row = dgvRecibos.Rows[e.RowIndex];
+                    numPolizaElim = row.Cells["Numero de poliza"].Value.ToString();
+                    vigenciaFin = DateTime.Parse(row.Cells["Vigencia"].Value.ToString());
+                   
+                    vigenciaFinElim = vigenciaFin.ToString("yyyy-MM-dd");
+
+                    //  vigenciaFinElim = DateTime.Parse(row.Cells["Vigencia"].Value.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+              
+            }
+        }
+
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            eliminarPolizaClick(numPolizaElim, vigenciaFinElim);
+            try
+            {
+                int FK_Cliente;
+                FK_Cliente = buscarPK_Cliente(txtNombreCliente.Text);
+                actualizarDataGridWiewRecibos(FK_Cliente);
+
+            }
+            catch (Exception ev)
+            {
+                MessageBox.Show("Rectifique los datos");
+            }
+
+        }
+
+        public void eliminarPolizaClick(String numeroPoliza, String finVigencia)
+        {
+            int pk_poliza = 0;
+
+            try
+            {
+
+                poliza = new Poliza();
+                pk_poliza = poliza.buscarPk_PolizaPoliza(numeroPoliza, finVigencia);
+
+                if (pk_poliza == 0)
+                {
+                    MessageBox.Show("No se encontró la póliza");
+                }
+                else
+                {
+                    MessageBoxButtons botones = MessageBoxButtons.YesNo;
+
+                    DialogResult dialogResult = MessageBox.Show("¿Desea eliminar la póliza?, esto implica ELIMINAR tambien TODOS los RECIBOS pertenecientes a esta Poliza", "ATENCION!", botones, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        poliza.eliminarPoliza(pk_poliza);
+
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+
+                    }
+
+                }
+
+                //cliente.buscarClientePKCliente(PK_Cliente);
+            }
+            catch (Exception ev)
+            {
+                MessageBox.Show("Por favor elija una fila existente " + ev);
+            }
+        }
+
+        
+
+        private void dgvRecibos_MouseDown(object sender, EventArgs e)
+        {
+           
+        }
+
     }
 }

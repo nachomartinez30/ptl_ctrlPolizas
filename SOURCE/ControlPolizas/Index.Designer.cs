@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmIndex));
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,6 +43,7 @@
             this.vigenciasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.controlDePólizasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnSalirIndex = new System.Windows.Forms.Button();
@@ -57,14 +57,16 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.controlDePólizasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnPoliza = new System.Windows.Forms.Button();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.btnCliente = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.btnAgente = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.btnCompania = new System.Windows.Forms.Button();
+            this.tsmEliminar = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuPendientes = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -83,12 +85,8 @@
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.MenuPendientes.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // menuStrip1
             // 
@@ -199,6 +197,13 @@
             this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
             this.acercaDeToolStripMenuItem.Text = "Acerca de...";
             // 
+            // controlDePólizasToolStripMenuItem
+            // 
+            this.controlDePólizasToolStripMenuItem.Name = "controlDePólizasToolStripMenuItem";
+            this.controlDePólizasToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.controlDePólizasToolStripMenuItem.Text = "Control de Pólizas";
+            this.controlDePólizasToolStripMenuItem.Click += new System.EventHandler(this.controlDePólizasToolStripMenuItem_Click);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.btnSalirIndex);
@@ -235,7 +240,7 @@
             // 
             // dgvCumpleaños
             // 
-            this.dgvCumpleaños.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dgvCumpleaños.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCumpleaños.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCumpleaños.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCumpleaños.Location = new System.Drawing.Point(3, 16);
@@ -271,20 +276,24 @@
             this.groupBox1.ForeColor = System.Drawing.Color.DarkRed;
             this.groupBox1.Location = new System.Drawing.Point(24, 16);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(564, 160);
+            this.groupBox1.Size = new System.Drawing.Size(552, 160);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Polizas por vencer";
             // 
             // dgvPendientes
             // 
-            this.dgvPendientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dgvPendientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvPendientes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgvPendientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPendientes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPendientes.Location = new System.Drawing.Point(3, 16);
             this.dgvPendientes.Name = "dgvPendientes";
-            this.dgvPendientes.Size = new System.Drawing.Size(558, 141);
+            this.dgvPendientes.Size = new System.Drawing.Size(546, 141);
             this.dgvPendientes.TabIndex = 0;
+            this.dgvPendientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPendientes_CellContentClick);
+            this.dgvPendientes.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPendientes_CellContentDoubleClick);
+            this.dgvPendientes.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvPendientes_CellMouseDown);
             // 
             // groupBox3
             // 
@@ -296,19 +305,21 @@
             this.groupBox3.ForeColor = System.Drawing.Color.DarkRed;
             this.groupBox3.Location = new System.Drawing.Point(24, 19);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(561, 160);
+            this.groupBox3.Size = new System.Drawing.Size(552, 160);
             this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Recibos por vencer";
             // 
             // dgvRecibosPorVencer
             // 
-            this.dgvRecibosPorVencer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dgvRecibosPorVencer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvRecibosPorVencer.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvRecibosPorVencer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRecibosPorVencer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvRecibosPorVencer.Location = new System.Drawing.Point(3, 16);
             this.dgvRecibosPorVencer.Name = "dgvRecibosPorVencer";
-            this.dgvRecibosPorVencer.Size = new System.Drawing.Size(555, 141);
+            this.dgvRecibosPorVencer.Size = new System.Drawing.Size(546, 141);
+            this.dgvRecibosPorVencer.StandardTab = true;
             this.dgvRecibosPorVencer.TabIndex = 6;
             this.dgvRecibosPorVencer.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRecibosPorVencer_CellContentDoubleClick);
             // 
@@ -348,36 +359,6 @@
             this.panel3.Size = new System.Drawing.Size(200, 94);
             this.panel3.TabIndex = 0;
             // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.btnCliente);
-            this.panel4.Location = new System.Drawing.Point(3, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(200, 94);
-            this.panel4.TabIndex = 1;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.btnAgente);
-            this.panel5.Location = new System.Drawing.Point(3, 203);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(200, 94);
-            this.panel5.TabIndex = 2;
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.btnCompania);
-            this.panel6.Location = new System.Drawing.Point(3, 303);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(200, 95);
-            this.panel6.TabIndex = 3;
-            // 
-            // controlDePólizasToolStripMenuItem
-            // 
-            this.controlDePólizasToolStripMenuItem.Name = "controlDePólizasToolStripMenuItem";
-            this.controlDePólizasToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.controlDePólizasToolStripMenuItem.Text = "Control de Pólizas";
-            // 
             // btnPoliza
             // 
             this.btnPoliza.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -395,6 +376,14 @@
             this.btnPoliza.TabIndex = 13;
             this.btnPoliza.UseVisualStyleBackColor = false;
             this.btnPoliza.Click += new System.EventHandler(this.btnPoliza_Click_1);
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.btnCliente);
+            this.panel4.Location = new System.Drawing.Point(3, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(200, 94);
+            this.panel4.TabIndex = 1;
             // 
             // btnCliente
             // 
@@ -414,6 +403,14 @@
             this.btnCliente.UseVisualStyleBackColor = false;
             this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click_1);
             // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.btnAgente);
+            this.panel5.Location = new System.Drawing.Point(3, 203);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(200, 94);
+            this.panel5.TabIndex = 2;
+            // 
             // btnAgente
             // 
             this.btnAgente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -432,6 +429,14 @@
             this.btnAgente.UseVisualStyleBackColor = false;
             this.btnAgente.Click += new System.EventHandler(this.btnAgente_Click_1);
             // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.btnCompania);
+            this.panel6.Location = new System.Drawing.Point(3, 303);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(200, 95);
+            this.panel6.TabIndex = 3;
+            // 
             // btnCompania
             // 
             this.btnCompania.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -449,6 +454,26 @@
             this.btnCompania.TabIndex = 15;
             this.btnCompania.UseVisualStyleBackColor = false;
             this.btnCompania.Click += new System.EventHandler(this.btnCompania_Click);
+            // 
+            // tsmEliminar
+            // 
+            this.tsmEliminar.Name = "tsmEliminar";
+            this.tsmEliminar.Size = new System.Drawing.Size(117, 22);
+            this.tsmEliminar.Text = "Eliminar";
+            // 
+            // MenuPendientes
+            // 
+            this.MenuPendientes.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eliminarToolStripMenuItem});
+            this.MenuPendientes.Name = "contextMenuStrip2";
+            this.MenuPendientes.Size = new System.Drawing.Size(118, 26);
+            // 
+            // eliminarToolStripMenuItem
+            // 
+            this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.eliminarToolStripMenuItem.Text = "Eliminar";
+            this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
             // 
             // FrmIndex
             // 
@@ -489,13 +514,13 @@
             this.panel5.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            this.MenuPendientes.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clienteToolStripMenuItem;
@@ -530,6 +555,11 @@
         private System.Windows.Forms.Button btnAgente;
         private System.Windows.Forms.Button btnCompania;
         private System.Windows.Forms.ToolStripMenuItem controlDePólizasToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip3;
+        private System.Windows.Forms.ToolStripMenuItem tsmEliminar;
+        private System.Windows.Forms.ContextMenuStrip MenuPendientes;
+        private System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
+        //private System.Windows.Forms.ContextMenuStrip contextMenuStrip3;
     }
 }
 

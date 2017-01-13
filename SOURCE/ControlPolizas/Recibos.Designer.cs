@@ -121,9 +121,11 @@
             // chkboxPagado
             // 
             this.chkboxPagado.AutoSize = true;
-            this.chkboxPagado.Location = new System.Drawing.Point(678, 25);
+            this.chkboxPagado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkboxPagado.ForeColor = System.Drawing.Color.DarkOrange;
+            this.chkboxPagado.Location = new System.Drawing.Point(512, 136);
             this.chkboxPagado.Name = "chkboxPagado";
-            this.chkboxPagado.Size = new System.Drawing.Size(63, 17);
+            this.chkboxPagado.Size = new System.Drawing.Size(69, 17);
             this.chkboxPagado.TabIndex = 15;
             this.chkboxPagado.Text = "Pagado";
             this.chkboxPagado.UseVisualStyleBackColor = true;
@@ -158,11 +160,11 @@
             this.dgvRecibos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvRecibos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dgvRecibos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRecibos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRecibos.Location = new System.Drawing.Point(12, 174);
             this.dgvRecibos.Name = "dgvRecibos";
-            this.dgvRecibos.Size = new System.Drawing.Size(761, 136);
+            this.dgvRecibos.Size = new System.Drawing.Size(761, 198);
             this.dgvRecibos.TabIndex = 23;
             this.dgvRecibos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRecibos_CellClick);
             this.dgvRecibos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRecibos_CellContentClick);
@@ -171,9 +173,9 @@
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(593, 136);
+            this.btnModificar.Location = new System.Drawing.Point(686, 43);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(75, 23);
+            this.btnModificar.Size = new System.Drawing.Size(75, 58);
             this.btnModificar.TabIndex = 25;
             this.btnModificar.Text = "&Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;
@@ -229,7 +231,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(675, 65);
+            this.label4.Location = new System.Drawing.Point(272, 122);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(79, 13);
             this.label4.TabIndex = 31;
@@ -238,7 +240,7 @@
             // dtpFechaPago
             // 
             this.dtpFechaPago.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaPago.Location = new System.Drawing.Point(678, 80);
+            this.dtpFechaPago.Location = new System.Drawing.Point(275, 137);
             this.dtpFechaPago.Name = "dtpFechaPago";
             this.dtpFechaPago.Size = new System.Drawing.Size(83, 20);
             this.dtpFechaPago.TabIndex = 30;

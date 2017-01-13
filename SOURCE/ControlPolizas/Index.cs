@@ -13,6 +13,7 @@ using System.Data.SQLite;
 namespace ControlPolizas
 {
    
+
     public partial class FrmIndex : Form
     {
         public Poliza poliza;
@@ -21,9 +22,12 @@ namespace ControlPolizas
         Inicio_Sesion inicioSesion;
         Cliente cliente;
         Agente agente;
+        String numPolizaElim = "";
+        String vigenciaFinElim;
         
 
         public int ventanaClienteCreada = 0;
+        private ContextMenu contextMenuStrip1;
 
         public FrmIndex()
         {
@@ -33,6 +37,7 @@ namespace ControlPolizas
 
         public void polizasPorVencer()
         {
+            dgvPendientes.Refresh();
             String fecha1 = thisDay.AddDays(28).ToString("yyyy-MM-dd");
             String fecha2 = thisDay.AddDays(33).ToString("yyyy-MM-dd");
             //MessageBox.Show("path "+System.IO.Directory.GetCurrentDirectory()+"\\ControlPolizas.db");
@@ -68,6 +73,7 @@ namespace ControlPolizas
 
         public void recibosPorVencer()
         {
+            dgvRecibosPorVencer.Refresh();
             String fecha1 = thisDay.AddDays(-2).ToString("yyyy-MM-dd");
             String fecha2 = thisDay.AddDays(3).ToString("yyyy-MM-dd");
             //MessageBox.Show("path "+System.IO.Directory.GetCurrentDirectory()+"\\ControlPolizas.db");
@@ -103,6 +109,7 @@ namespace ControlPolizas
 
         public void cumpleañosDeHoy()
         {
+            dgvCumpleaños.Refresh();
             String day = thisDay.ToString("dd");
             String month = thisDay.ToString("MM");
             //MessageBox.Show("path "+System.IO.Directory.GetCurrentDirectory()+"\\ControlPolizas.db");
@@ -334,7 +341,7 @@ namespace ControlPolizas
                 inicioVigencia = vigenciaInicio.ToString("yyyy-MM-dd");
                 poliza = new Poliza();
                 poliza.Show();
-                poliza.buscarPoliza(numeroPoliza, inicioVigencia, finVigencia);
+                poliza.buscarPolizaFinVigencia(numeroPoliza, finVigencia);
 
                 //cliente.buscarClientePKCliente(PK_Cliente);
             }
@@ -342,6 +349,114 @@ namespace ControlPolizas
             {
                 MessageBox.Show("Por favor elija una fila existente "+ev);
             }
+        }
+
+        private void controlDePólizasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Acerca_de acerca = new Acerca_de();
+            acerca.Show();
+        }
+
+       
+
+        private void dgvPendientes_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            String numeroPoliza, finVigencia, inicioVigencia;
+            DateTime vigenciaFin, vigenciaInicio;
+            try
+            {
+                DataGridViewRow row = dgvPendientes.Rows[e.RowIndex];
+                numeroPoliza = row.Cells["Numero de poliza"].Value.ToString();
+                vigenciaFin = DateTime.Parse(row.Cells["Vigencia"].Value.ToString());
+                //vigenciaInicio = vigenciaFin.AddYears(-1);
+                finVigencia = vigenciaFin.ToString("yyyy-MM-dd");
+                //inicioVigencia = vigenciaInicio.ToString("yyyy-MM-dd");
+                poliza = new Poliza();
+                poliza.Show();
+                poliza.buscarPolizaFinVigencia(numeroPoliza, finVigencia);
+
+                //cliente.buscarClientePKCliente(PK_Cliente);
+            }
+            catch (Exception ev)
+            {
+                MessageBox.Show("Por favor elija una fila existente " + ev);
+            }
+        }
+
+        private void dgvPendientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void dgvPendientes_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                DateTime vigenciaFin;
+                if (e.Button == MouseButtons.Right)
+                {
+                    dgvPendientes.ContextMenuStrip = MenuPendientes;
+                    dgvPendientes.ContextMenuStrip.Show(dgvPendientes, e.Location);
+                    DataGridViewRow row = dgvPendientes.Rows[e.RowIndex];
+                    numPolizaElim= row.Cells["Numero de poliza"].Value.ToString();
+                    vigenciaFin = DateTime.Parse(row.Cells["Vigencia"].Value.ToString());
+                    //vigenciaInicio = vigenciaFin.AddYears(-1);
+                    vigenciaFinElim = vigenciaFin.ToString("yyyy-MM-dd");
+
+                  //  vigenciaFinElim = DateTime.Parse(row.Cells["Vigencia"].Value.ToString());
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("no se pudo mostrar menu clic   "+ex);
+            }
+            
+        }
+
+
+        public void eliminarPolizaClick(String numeroPoliza,String finVigencia)
+        {
+            int pk_poliza = 0;
+            
+            try
+            {
+
+                poliza = new Poliza();
+                pk_poliza= poliza.buscarPk_PolizaPoliza(numeroPoliza, finVigencia);
+
+                if (pk_poliza == 0)
+                {
+                    MessageBox.Show("No se encontró la póliza");
+                }
+                else
+                {
+                    MessageBoxButtons botones = MessageBoxButtons.YesNo;
+
+                    DialogResult dialogResult = MessageBox.Show("¿Desea eliminar la póliza?, esto implica ELIMINAR tambien TODOS los RECIBOS pertenecientes a esta Poliza", "ATENCION!", botones, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        poliza.eliminarPoliza(pk_poliza);
+                       
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+
+                    }
+                   
+                }
+
+                //cliente.buscarClientePKCliente(PK_Cliente);
+            }
+            catch (Exception ev)
+            {
+                MessageBox.Show("Por favor elija una fila existente " + ev);
+            }
+        }
+
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            eliminarPolizaClick(numPolizaElim, vigenciaFinElim);
+            polizasPorVencer();
         }
     }
 }
