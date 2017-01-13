@@ -164,7 +164,7 @@
             this.dgvRecibos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRecibos.Location = new System.Drawing.Point(12, 174);
             this.dgvRecibos.Name = "dgvRecibos";
-            this.dgvRecibos.Size = new System.Drawing.Size(761, 198);
+            this.dgvRecibos.Size = new System.Drawing.Size(761, 175);
             this.dgvRecibos.TabIndex = 23;
             this.dgvRecibos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRecibos_CellClick);
             this.dgvRecibos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRecibos_CellContentClick);
