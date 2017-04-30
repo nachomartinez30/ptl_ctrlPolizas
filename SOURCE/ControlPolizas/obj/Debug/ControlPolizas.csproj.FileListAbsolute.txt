@@ -57,3 +57,6 @@ C:\Users\Ignacio\Documents\Visual Studio 2015\Projects\ControlPolizas\ControlPol
 C:\Users\Ignacio\Documents\Visual Studio 2015\Projects\ControlPolizas\ControlPolizas\obj\Debug\ControlPolizas.csproj.GenerateResource.Cache
 C:\Users\Ignacio\Documents\Visual Studio 2015\Projects\ControlPolizas\ControlPolizas\obj\Debug\ControlPolizas.exe
 C:\Users\Ignacio\Documents\Visual Studio 2015\Projects\ControlPolizas\ControlPolizas\obj\Debug\ControlPolizas.pdb
+C:\Users\Ignacio\Desktop\ptl_ctrlPolizas\SOURCE\ControlPolizas\bin\Debug\ControlPolizas.exe.config
+C:\Users\Ignacio\Desktop\ptl_ctrlPolizas\SOURCE\ControlPolizas\obj\Debug\ControlPolizas.exe
+C:\Users\Ignacio\Desktop\ptl_ctrlPolizas\SOURCE\ControlPolizas\obj\Debug\ControlPolizas.pdb
